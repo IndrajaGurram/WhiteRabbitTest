@@ -1,0 +1,81 @@
+
+    <html>
+        <div class="container" style="background-image:url('folder_backgorund.jpg');">
+            <head>
+            <link rel="stylesheet" type="text/css" href="list_of_files.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             <h1 style="color: beige;"><center>List of files in a directory</center></h1>
+             <h5 style="color: beige;"> <center>This page lists files in a directory</center></h5>
+            <hr>
+            </head>
+         </div>
+         <div class="container_files">
+            <body>
+                <button type="button" id="addFile" onclick="addFile()"><b>Add File</b></button>
+                <button type="button" id="addFile" onclick="deleteFileOrFiles()"><b>Delete File(s)</b></button>
+              
+                <div id="myModal" class="modal">
+
+                    <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <p>Please choose a file to add</p>
+
+                      <label for="myfile"><b>Select a file:</b></label>
+                      <input type="file" id="myfile" name="myfile">
+                      <br><br>
+
+                      <span>(Only .txt,.doc,.docx,.pdf,.png,.jpg,.jpeg are allowed.)</span>
+                       <br>
+                       <button style="color: green;" class="addFileButton" type="button">submit</button> 
+                    </div>
+                  
+                  </div>
+                  <div id="list_of_files" >
+                      <h3><u></u>List of files</h3></u></h3>
+                      <hr>
+                      <div class="searchFile">
+                        <div class="search-container">
+                              <input type="text" placeholder="Search.." name="search">
+                              <button type="submit"><i class="fa fa-search"></i></button>
+                          </div>
+                      </div>
+                      <br><br><br>
+                      <div class="file_container" >
+                        <?php include('CListDirectoryFilesApplication.class.php') ?>
+                        <?php echo "$m_arrstrFilesinDirectory"; ?>
+                          <table width="80%">
+                              <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>FileName</th>
+                                    <th>Action</th>
+                                  </tr>
+                              </thead>
+                          </table>
+                      </div>
+                  </div>
+            </body>
+        </div>
+        
+    </html>
+
+<script>
+
+function addFile() {
+    var modal = document.getElementById("myModal"),
+        btn = document.getElementById("addFile"),
+        span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+       if (event.target == modal) {
+          modal.style.display = "none";
+        }
+    }
+      
+ }
+</script>
